@@ -4,12 +4,8 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    main: './src/index.js',
-    vendor: [
-      'react',
-      'react-dom',
-      './src/vendor.js',
-    ],
+    main: './src/js/index.js',
+    styles: './src/less/index.less',
   },
   module: {
     rules: [
@@ -51,12 +47,25 @@ module.exports = {
     // extract CSS into separate file
     new ExtractTextPlugin('[name].bundle.css'),
     new webpack.optimize.CommonsChunkPlugin({
-      names: ['vendor', 'manifest'],
+      name: 'main',
+      children: true,
+      minChunks: 2, // If the child is used twice or more it is moved to the react-chunk
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: "vendor",
+      minChunks: function(module){
+        return module.context && module.context.indexOf("node_modules") !== -1;
+      }
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: "manifest",
+      minChunks: Infinity
     }),
   ],
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '/dist/',
   },
   devServer: {
     compress: true,
