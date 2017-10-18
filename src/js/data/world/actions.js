@@ -9,3 +9,10 @@ export function decrement() {
     type: 'DECREMENT',
   };
 }
+
+export function setCounter(value) {
+  return {
+    type: 'SET_COUNTER',
+    value,
+  };
+}
