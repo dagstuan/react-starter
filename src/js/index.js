@@ -1,15 +1,14 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import { configureStore } from "./store";
+import initializeRoot from "./utils/initializeRoot";
 
 import "../less/index.less";
 
-const World = () => <h1>Min Verden!</h1>;
+const roots = ["testRoot", "worldRoot"];
 
-ReactDOM.render(<World />, document.getElementById("root"));
+function initialize() {
+  const store = configureStore();
 
-const testElem = document.getElementById("testElem");
-if (testElem) {
-  import("./components/test").then(testComponent => {
-    ReactDOM.render(testComponent.default(), testElem);
-  });
+  roots.map(rootName => initializeRoot(store, `js-${rootName}`, rootName));
 }
+
+initialize();
