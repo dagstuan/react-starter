@@ -7,20 +7,19 @@
     "clean": "rimraf dist",
     "prettier": "prettier src/**/* --write",
     "build": "webpack --progress --config webpack-test.config.js",
-    "build:prod":
-      "npm run clean && webpack --progress --config webpack-prod.config.js",
+    "build:prod": "npm run clean && webpack --progress --config webpack-prod.config.js",
     "start": "webpack-dev-server --progress --config webpack-test.config.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "babel-preset-env": "^1.6.1",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
     "immutable": "^3.8.2",
     "prop-types": "^15.6.0",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
     "react-redux": "^5.0.6",
-    "redux": "^3.7.2"
+    "redux": "^4.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
